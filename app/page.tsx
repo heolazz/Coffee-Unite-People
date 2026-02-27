@@ -79,7 +79,7 @@ export default function Home() {
                     </div>
 
                     {/* Desktop Nav - Centered */}
-                    <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12 text-base font-bold text-black tracking-wide">
+                    <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12 text-base font-medium text-black tracking-wide">
                         <a href="#" className="hover:text-black/60 transition-colors">Tentang</a>
                         <a href="#" className="hover:text-black/60 transition-colors">Visi</a>
                         <a href="#" className="hover:text-black/60 transition-colors">Fitur</a>
@@ -87,7 +87,7 @@ export default function Home() {
 
                     {/* Desktop Actions */}
                     <div className="flex-1 hidden md:flex items-center justify-end gap-6 h-full">
-                        <a href="#" className="text-base font-bold hover:text-black/60 transition-colors h-full flex items-center">Masuk</a>
+                        <a href="#" className="text-base font-medium hover:text-black/60 transition-colors h-full flex items-center">Masuk</a>
                         <Button variant="primary" size="md" className="bg-black text-white hover:bg-black/80 hover:shadow-lg transition-all rounded-full px-6">Gabung Waitlist</Button>
                     </div>
 
