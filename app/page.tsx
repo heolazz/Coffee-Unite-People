@@ -135,8 +135,7 @@ export default function Home() {
                         {/* Centered Heading for Visi/Tentang */}
                         <div className="text-center mb-16 md:mb-24">
                             <h2 className="text-3xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-8 text-black max-w-5xl mx-auto">
-                                Menjembatani budaya ngopi dengan <br />
-                                <span className="text-black/30">interaksi sosial nyata.</span>
+                                Menjembatani budaya ngopi dengan interaksi sosial nyata.
                             </h2>
                             <p className="text-lg md:text-2xl text-black/60 font-medium max-w-2xl mx-auto leading-relaxed">
                                 Karena ngopi sendirian itu nyantai, tapi ngopi sambil ngobrol sama orang baru itu pengalaman yang nggak terlupakan.
@@ -240,14 +239,14 @@ export default function Home() {
                 <section className="py-16 md:py-32 relative">
                     <div className="container mx-auto px-4 md:px-8">
 
-                        {/* Refined Section Header - Centered */}
-                        <div className="mb-12 md:mb-20 border-b border-black pb-12 text-center">
-                            <div className="flex flex-col items-center gap-6">
-                                <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-black leading-tight max-w-4xl">
+                        {/* Refined Section Header - Split Layout */}
+                        <div className="mb-12 md:mb-20 border-b border-black pb-8">
+                            <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+                                <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-black leading-tight text-left">
                                     Ekosistem Sosial<br />Yang Nyata.
                                 </h2>
-                                <p className="text-lg font-medium leading-relaxed max-w-xl text-black/80">
-                                    <span className="block text-sm font-bold uppercase tracking-widest text-black mb-2">Filosofi Fitur</span>
+                                <p className="text-lg font-medium leading-relaxed max-w-md text-black/80 md:text-right">
+                                    <span className="block text-sm font-regular uppercase tracking-widest text-black mb-2">Filosofi Fitur</span>
                                     Interaksi dari layar smartphone kembali ke meja kopi. Aman, spontan, dan bermakna.
                                 </p>
                             </div>
