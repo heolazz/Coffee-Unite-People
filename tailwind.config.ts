@@ -11,6 +11,7 @@ const config: Config = {
         extend: {
             fontFamily: {
                 sans: ['var(--font-outfit)', 'sans-serif'],
+                serif: ['var(--font-playfair)', 'serif'],
             },
             colors: {
                 primary: '#000000',
@@ -22,6 +23,7 @@ const config: Config = {
                 'float': 'float 6s ease-in-out infinite',
                 'float-delayed': 'float 6s ease-in-out 3s infinite',
                 'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
                 float: {

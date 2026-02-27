@@ -108,10 +108,8 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
 
-              {/* Subtle Monogram in background */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] font-bold text-black/[0.03] select-none pointer-events-none">
-                C
-              </div>
+              {/* Subtle Logo Ring in background */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-[20px] border-black/[0.03] rounded-full select-none pointer-events-none"></div>
             </div>
 
             {/* 2. Overlook Coffee Shot */}

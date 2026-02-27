@@ -8,6 +8,7 @@ import { EventCard } from '../components/EventCard';
 import { IdeaGenerator } from '../components/IdeaGenerator';
 import { FAQ } from '../components/FAQ';
 import { Footer } from '../components/Footer';
+import { Logo } from '../components/Logo';
 import { MOCK_EVENTS } from '../constants';
 import { Search, Users, Coffee, Heart, Shield, Sparkles, MapPin, Zap, UserCircle, Tag, Ticket, Check, Wifi, Menu, X, ArrowRight, ChevronRight } from 'lucide-react';
 
@@ -72,9 +73,7 @@ export default function Home() {
             >
                 <div className="container mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
                     <div className="flex items-center gap-3 cursor-pointer group z-50" onClick={() => window.scrollTo(0, 0)}>
-                        <div className="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-black text-white rounded-full">
-                            <span className="font-bold text-xs group-hover:scale-110 transition-transform">CUP</span>
-                        </div>
+                        <Logo size="md" />
                     </div>
 
                     {/* Desktop Nav */}

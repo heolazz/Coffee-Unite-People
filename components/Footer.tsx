@@ -75,9 +75,12 @@ export const Footer: React.FC = () => {
           </div>
           {/* Massive Watermark */}
           {/* Massive Watermark */}
-          <h1 className="text-8xl sm:text-[10rem] md:text-[15rem] lg:text-[20rem] font-bold leading-[0.7] tracking-tighter text-black/5 select-none pointer-events-none -mb-4 sm:-mb-8 md:-mb-10 -mr-4">
-            CUP
-          </h1>
+          <div className="flex items-center gap-12 opacity-[0.03] select-none pointer-events-none -mb-10 sm:-mb-16 md:-mb-24 -mr-12">
+            <div className="w-[15rem] h-[15rem] md:w-[25rem] md:h-[25rem] lg:w-[35rem] lg:h-[35rem] border-[40px] md:border-[80px] lg:border-[120px] border-black rounded-full flex-shrink-0"></div>
+            <h1 className="text-8xl sm:text-[10rem] md:text-[15rem] lg:text-[25rem] font-serif italic font-bold leading-[0.7] tracking-tighter text-black">
+              CUP
+            </h1>
+          </div>
         </div>
 
       </div>
