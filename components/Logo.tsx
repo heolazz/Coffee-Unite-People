@@ -7,34 +7,28 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
     const sizeClasses = {
-        sm: {
-            container: 'gap-2',
-            ring: 'w-6 h-6 border-[3px]',
-            text: 'text-xl'
-        },
-        md: {
-            container: 'gap-3',
-            ring: 'w-8 h-8 md:w-10 md:h-10 border-[4px] md:border-[5px]',
-            text: 'text-2xl md:text-3xl'
-        },
-        lg: {
-            container: 'gap-4',
-            ring: 'w-12 h-12 md:w-16 md:h-16 border-[6px] md:border-[8px]',
-            text: 'text-4xl md:text-6xl'
-        },
-        xl: {
-            container: 'gap-6',
-            ring: 'w-24 h-24 md:w-32 md:h-32 border-[10px] md:border-[15px]',
-            text: 'text-6xl md:text-8xl'
-        }
+        sm: 'text-xl',
+        md: 'text-2xl md:text-3xl',
+        lg: 'text-4xl md:text-6xl',
+        xl: 'text-6xl md:text-8xl'
     };
 
-    const currentSize = sizeClasses[size];
+    // Responsive ring thickness based on size
+    const ringThickness = {
+        sm: 'border-[3px]',
+        md: 'border-[0.14em]',
+        lg: 'border-[0.14em]',
+        xl: 'border-[0.14em]'
+    };
 
     return (
-        <div className={`flex items-center ${currentSize.container} ${className}`}>
-            <div className={`${currentSize.ring} border-accent rounded-full flex-shrink-0 animate-pulse-slow`}></div>
-            <span className={`${currentSize.text} font-serif italic font-bold tracking-tight text-black`}>
+        <div className={`flex items-center gap-[0.25em] ${sizeClasses[size]} ${className}`}>
+            {/* 
+              Using 0.72em height for the ring as it typically matches the 
+              optical cap-height of serif fonts like Playfair Display.
+            */}
+            <div className={`h-[0.72em] w-[0.72em] ${ringThickness[size]} border-accent rounded-full flex-shrink-0 animate-pulse-slow`}></div>
+            <span className="font-serif italic font-medium tracking-tight text-black leading-none translate-y-[-0.02em]">
                 CUP
             </span>
         </div>
