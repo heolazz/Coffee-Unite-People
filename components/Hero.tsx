@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
       <div className={`container mx-auto px-4 md:px-8 flex flex-col items-center justify-center text-center z-10 py-12 transition-all duration-1000 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
         {/* Headline - Typography Driven with Gradient Mask */}
-        <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-[10rem] -mt-20 leading-[1.1] md:leading-[0.85] font-bold tracking-tighter text-black mb-8 md:mb-12 max-w-7xl mx-auto relative px-2">
+        <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-[8rem] -mt-20 leading-[1.1] md:leading-tight font-bold tracking-tighter text-black mb-8 md:mb-12 max-w-7xl mx-auto relative px-2">
           <span className="block">Bertemu teman</span>
           <span className="block text-mask opacity-90">lewat secangkir kopi.</span>
         </h1>
