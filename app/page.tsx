@@ -71,21 +71,23 @@ export default function Home() {
         ${isScrolled && !mobileMenuOpen ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}
         `}
             >
-                <div className="container mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-3 cursor-pointer group z-50" onClick={() => window.scrollTo(0, 0)}>
-                        <Logo size="md" />
+                <div className="container mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between relative">
+                    <div className="flex-1 flex items-center">
+                        <div className="flex items-center gap-3 cursor-pointer group z-50" onClick={() => window.scrollTo(0, 0)}>
+                            <Logo size="md" />
+                        </div>
                     </div>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-12 text-base font-bold text-black tracking-wide">
+                    {/* Desktop Nav - Centered */}
+                    <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12 text-base font-bold text-black tracking-wide">
                         <a href="#" className="hover:text-black/60 transition-colors">Tentang</a>
                         <a href="#" className="hover:text-black/60 transition-colors">Visi</a>
                         <a href="#" className="hover:text-black/60 transition-colors">Fitur</a>
                     </nav>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center gap-6">
-                        <a href="#" className="text-base font-bold hover:text-black/60 transition-colors">Masuk</a>
+                    <div className="flex-1 hidden md:flex items-center justify-end gap-6 h-full">
+                        <a href="#" className="text-base font-bold hover:text-black/60 transition-colors h-full flex items-center">Masuk</a>
                         <Button variant="primary" size="md" className="bg-black text-white hover:bg-black/80 hover:shadow-lg transition-all rounded-full px-6">Gabung Waitlist</Button>
                     </div>
 
@@ -130,24 +132,24 @@ export default function Home() {
                 {/* 2. PROBLEM -> SOLUTION */}
                 <section className="py-16 md:py-32 relative overflow-hidden">
                     <div className="container mx-auto px-4 md:px-8">
+                        {/* Centered Heading for Visi/Tentang */}
+                        <div className="text-center mb-16 md:mb-24">
+                            <h2 className="text-3xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-8 text-black max-w-5xl mx-auto">
+                                Menjembatani budaya ngopi dengan <br />
+                                <span className="text-black/30">interaksi sosial nyata.</span>
+                            </h2>
+                            <p className="text-lg md:text-2xl text-black/60 font-medium max-w-2xl mx-auto leading-relaxed">
+                                Karena ngopi sendirian itu nyantai, tapi ngopi sambil ngobrol sama orang baru itu pengalaman yang nggak terlupakan.
+                            </p>
+                        </div>
+
                         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
-
-                            {/* Left Column: Sticky Title */}
-                            <div className="flex-1 lg:sticky lg:top-32 lg:h-[max-content] z-20">
-                                <h2 className="text-3xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-6 text-black">
-                                    Menjembatani budaya ngopi dengan <br />
-                                    <span className="text-black/30">interaksi sosial nyata.</span>
-                                </h2>
-                                <p className="text-lg md:text-xl text-black/60 font-medium max-w-lg mt-8 leading-relaxed">
-                                    Karena ngopi sendirian itu nyantai, tapi ngopi sambil ngobrol sama orang baru itu pengalaman yang nggak terlupakan.
-                                </p>
-                            </div>
-
-                            {/* Right Column: Stacked Interactive Cards */}
-                            <div className="flex-1 flex flex-col gap-6 md:gap-8 relative z-10">
+                            {/* Left Column removed or integrated */}
+                            {/* We will just use the columns for Problem/Solution now */}
+                            <div className="flex-1 flex flex-col md:flex-row lg:flex-row gap-6 md:gap-8 relative z-10 w-full">
 
                                 {/* Problem Card */}
-                                <div className="p-8 md:p-12 bg-white rounded-[2.5rem] border border-black/10 hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-black/5 flex flex-col items-start min-h-[300px]">
+                                <div className="flex-1 p-8 md:p-12 bg-white rounded-[2.5rem] border border-black/10 hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-black/5 flex flex-col items-start min-h-[300px]">
                                     <span className="inline-block px-4 py-1.5 mb-6 md:mb-8 rounded-full border border-black/10 text-xs md:text-sm font-bold uppercase tracking-widest text-black/60">
                                         Masalahnya
                                     </span>
@@ -159,15 +161,8 @@ export default function Home() {
                                     </div>
                                 </div>
 
-                                {/* Arrow Connector (Desktop Only) */}
-                                <div className="hidden lg:flex justify-center -my-9 relative z-20 pointer-events-none">
-                                    <div className="w-12 h-12 bg-white rounded-full border border-black/10 shadow-sm flex items-center justify-center rotate-90">
-                                        <ArrowRight className="w-5 h-5 text-black/30" />
-                                    </div>
-                                </div>
-
                                 {/* Solution Card */}
-                                <div className="p-8 md:p-12 bg-black text-white rounded-[2.5rem] shadow-xl shadow-black/20 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-start min-h-[300px] relative overflow-hidden group">
+                                <div className="flex-1 p-8 md:p-12 bg-black text-white rounded-[2.5rem] shadow-xl shadow-black/20 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-start min-h-[300px] relative overflow-hidden group">
                                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     <span className="inline-block px-4 py-1.5 mb-6 md:mb-8 rounded-full bg-white/20 text-xs md:text-sm font-bold uppercase tracking-widest text-white relative z-10">
                                         Solusi CUP
@@ -179,7 +174,6 @@ export default function Home() {
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -246,13 +240,13 @@ export default function Home() {
                 <section className="py-16 md:py-32 relative">
                     <div className="container mx-auto px-4 md:px-8">
 
-                        {/* Refined Section Header - Understated Size */}
-                        <div className="mb-12 md:mb-20 border-b border-black pb-8">
-                            <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-                                <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-black leading-tight">
+                        {/* Refined Section Header - Centered */}
+                        <div className="mb-12 md:mb-20 border-b border-black pb-12 text-center">
+                            <div className="flex flex-col items-center gap-6">
+                                <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-black leading-tight max-w-4xl">
                                     Ekosistem Sosial<br />Yang Nyata.
                                 </h2>
-                                <p className="text-lg font-medium leading-relaxed max-w-md text-black/80 md:text-right">
+                                <p className="text-lg font-medium leading-relaxed max-w-xl text-black/80">
                                     <span className="block text-sm font-bold uppercase tracking-widest text-black mb-2">Filosofi Fitur</span>
                                     Interaksi dari layar smartphone kembali ke meja kopi. Aman, spontan, dan bermakna.
                                 </p>
