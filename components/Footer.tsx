@@ -75,9 +75,9 @@ export const Footer: React.FC = () => {
           </div>
           {/* Massive Watermark */}
           {/* Massive Watermark */}
-          <div className="flex items-center gap-12 opacity-[0.03] select-none pointer-events-none -mb-10 sm:-mb-16 md:-mb-24 -mr-12">
-            <div className="w-[15rem] h-[15rem] md:w-[25rem] md:h-[25rem] lg:w-[35rem] lg:h-[35rem] border-[40px] md:border-[80px] lg:border-[120px] border-black rounded-full flex-shrink-0"></div>
-            <h1 className="text-8xl sm:text-[10rem] md:text-[15rem] lg:text-[25rem] font-serif italic font-bold leading-[0.7] tracking-tighter text-black">
+          <div className="flex items-center gap-6 sm:gap-10 md:gap-16 opacity-[0.03] select-none pointer-events-none -mb-10 sm:-mb-16 md:-mb-24 -mr-12">
+            <div className="w-[6rem] h-[6rem] sm:w-[7rem] sm:h-[7rem] md:w-[11rem] md:h-[11rem] lg:w-[18rem] lg:h-[18rem] border-[15px] sm:border-[20px] md:border-[30px] lg:border-[50px] border-black rounded-full flex-shrink-0"></div>
+            <h1 className="text-8xl sm:text-[10rem] md:text-[15rem] lg:text-[25rem] font-serif italic font-bold leading-none tracking-tighter text-black">
               CUP
             </h1>
           </div>
