@@ -34,29 +34,29 @@ export const FAQ: React.FC = () => {
     };
 
     return (
-        <section className="py-12 md:py-24 bg-white border-t border-black/5">
-            <div className="container mx-auto px-4 md:px-8">
+        <section className="py-16 md:py-32 bg-white border-t border-black/5">
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
 
-                    {/* Left: Sticky Header (Compact) */}
-                    <div className="lg:col-span-4">
-                        <div className="sticky top-24 md:top-32">
-                            <span className="text-xs font-bold uppercase tracking-widest text-black/40 mb-3 block">FAQ</span>
-                            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">
+                    {/* Left: General Info */}
+                    <div className="lg:col-span-1">
+                        <div>
+                            <span className="text-sm font-bold uppercase tracking-widest text-black/40 mb-4 block">FAQ</span>
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1]">
                                 Pertanyaan <br /> Umum.
                             </h2>
-                            <p className="text-sm md:text-base text-black/60 font-medium mb-8 max-w-xs">
+                            <p className="text-base md:text-lg text-black/60 font-medium mb-10 max-w-sm leading-relaxed">
                                 Cari tahu lebih lanjut tentang bagaimana CUP menghubungkanmu dengan komunitas kopi lokal.
                             </p>
-                            <button className="text-sm font-bold border-b border-black pb-0.5 hover:text-black/60 transition-colors">
+                            <button className="text-base font-bold border-b-2 border-black pb-1 hover:text-black/60 transition-colors">
                                 Hubungi Support &rarr;
                             </button>
                         </div>
                     </div>
 
-                    {/* Right: Compact List */}
-                    <div className="lg:col-span-8">
+                    {/* Right: List of Questions */}
+                    <div className="lg:col-span-1">
                         <div className="divide-y divide-black/5 border-t border-b border-black/5">
                             {FAQS.map((faq, index) => (
                                 <div key={index} className="group">
