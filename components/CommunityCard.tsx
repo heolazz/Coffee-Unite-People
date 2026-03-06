@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Calendar, MapPin } from 'lucide-react';
 
-export interface KomunitasCardProps {
+export interface CommunityCardProps {
     imageSrc: string;
     title: string;
     host: string;
@@ -10,7 +10,7 @@ export interface KomunitasCardProps {
     location: string;
 }
 
-export const KomunitasCard: React.FC<KomunitasCardProps> = ({
+export const CommunityCard: React.FC<CommunityCardProps> = ({
     imageSrc,
     title,
     host,
