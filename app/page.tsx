@@ -96,7 +96,7 @@ export default function Home() {
 
                         {/* Mobile: Horizontal Scroll | Desktop: Grid */}
                         <div className="relative">
-                            <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 md:grid md:grid-cols-3 md:gap-12 md:pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 relative z-0">
+                            <div className="flex overflow-x-auto snap-x snap-mandatory pt-6 pb-8 gap-4 md:grid md:grid-cols-3 md:gap-12 md:pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 relative z-0">
                                 {/* Decorative Line (Desktop Only) */}
                                 <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-black/5 border-t border-dashed border-black/20 -z-10"></div>
 
@@ -338,14 +338,14 @@ export default function Home() {
                             <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-12 md:pt-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
                                 <div className="min-w-[80vw] md:min-w-0 snap-center bg-white p-8 rounded-[2.5rem] shadow-lg shadow-black/5 border border-black/5 text-center hover:scale-105 transition-transform duration-300">
                                     <div className="w-20 h-20 mx-auto bg-stone-100 rounded-full mb-6 overflow-hidden">
-                                        <img src="https://picsum.photos/200/200?random=50" className="w-full h-full object-cover" />
+                                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&h=400&q=80" className="w-full h-full object-cover" alt="Remote Worker" />
                                     </div>
                                     <h4 className="font-bold text-xl mb-2">Pekerja Remote</h4>
                                     <p className="text-black/60 text-base leading-relaxed">Cari teman fokus dan zona kaya wifi.</p>
                                 </div>
                                 <div className="min-w-[80vw] md:min-w-0 snap-center bg-white p-8 rounded-[2.5rem] shadow-lg shadow-accent/20 border-2 border-accent text-center transform md:scale-105 z-10">
                                     <div className="w-24 h-24 mx-auto bg-stone-100 rounded-full mb-6 overflow-hidden border-4 border-white shadow-md">
-                                        <img src="https://picsum.photos/200/200?random=51" className="w-full h-full object-cover" />
+                                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&h=400&q=80" className="w-full h-full object-cover" alt="Coffee Lover" />
                                     </div>
                                     <h4 className="font-bold text-xl mb-2">Pencinta Kopi</h4>
                                     <p className="text-black/60 text-base leading-relaxed">
@@ -354,7 +354,7 @@ export default function Home() {
                                 </div>
                                 <div className="min-w-[80vw] md:min-w-0 snap-center bg-white p-8 rounded-[2.5rem] shadow-lg shadow-black/5 border border-black/5 text-center hover:scale-105 transition-transform duration-300">
                                     <div className="w-20 h-20 mx-auto bg-stone-100 rounded-full mb-6 overflow-hidden">
-                                        <img src="https://picsum.photos/200/200?random=52" className="w-full h-full object-cover" />
+                                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80" className="w-full h-full object-cover" alt="Newcomer" />
                                     </div>
                                     <h4 className="font-bold text-xl mb-2">Anak Baru</h4>
                                     <p className="text-black/60 text-base leading-relaxed">
