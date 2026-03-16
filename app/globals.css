@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html {}
+
 :root {
     --primary: #000000;
     --accent: #FDE047;
