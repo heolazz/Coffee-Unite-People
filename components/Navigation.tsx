@@ -37,18 +37,22 @@ export function Navigation() {
             const scrolled = (winScroll / height) * 100;
             setScrollProgress(scrolled);
 
-            // 3. Active Section logic
-            const sections = navLinks.map(link => link.id);
-            for (const sectionId of sections) {
-                const element = document.getElementById(sectionId);
+            // 3. Precise Active Section logic
+            const sections = [...navLinks].reverse(); // Check from bottom to top
+            let currentActive = '';
+
+            for (const link of sections) {
+                const element = document.getElementById(link.id);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    if (rect.top >= -100 && rect.top <= 300) {
-                        setActiveSection(sectionId);
+                    // Trigger active state when section is 150px from top
+                    if (rect.top <= 150) {
+                        currentActive = link.id;
                         break;
                     }
                 }
             }
+            setActiveSection(currentActive);
         };
 
         window.addEventListener('scroll', handleScrollData);
@@ -62,7 +66,8 @@ export function Navigation() {
 
         const targetPosition = target.getBoundingClientRect().top + window.scrollY;
         const startPosition = window.scrollY;
-        const distance = targetPosition - startPosition - 100; // Offset for pill navbar
+        const offset = window.innerWidth < 768 ? 70 : 80;
+        const distance = targetPosition - startPosition - offset;
         const duration = 1200;
         let start: number | null = null;
 

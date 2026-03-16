@@ -24,8 +24,8 @@ export default function Home() {
                 <Hero />
 
                 {/* 2. PROBLEM -> SOLUTION */}
-                <section id="tentang" className="py-16 md:py-32 relative overflow-hidden">
-                    <div className="container mx-auto px-4 md:px-8">
+                <section className="py-16 md:py-32 relative overflow-hidden">
+                    <div id="tentang" className="container mx-auto px-4 md:px-8">
                         {/* Centered Heading for Visi/Tentang */}
                         <div className="text-center mb-16 md:mb-24">
                             <h2 className="text-3xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-8 text-black max-w-5xl mx-auto">
@@ -79,8 +79,8 @@ export default function Home() {
                 </section>
 
                 {/* 3. HOW IT WORKS */}
-                <section id="cara-kerja" className="py-16 md:py-32 relative overflow-hidden">
-                    <div className="container mx-auto px-4 md:px-8">
+                <section className="py-16 md:py-32 relative overflow-hidden">
+                    <div id="cara-kerja" className="container mx-auto px-4 md:px-8">
                         <div className="flex flex-col md:flex-row justify-center md:text-center items-start mb-12 md:mb-24 gap-8 relative z-10">
                             <div className="max-w-xl">
                                 <h2 className="text-3xl md:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -140,8 +140,8 @@ export default function Home() {
                 </section>
 
                 {/* 4. FEATURES / VALUE (DESIGNED FOR CONNECTION) */}
-                <section id="fitur" className="py-16 md:py-32 relative">
-                    <div className="container mx-auto px-4 md:px-8">
+                <section className="py-16 md:py-32 relative">
+                    <div id="fitur" className="container mx-auto px-4 md:px-8">
                         <div className="mb-12 md:mb-20 border-b border-black pb-8 relative">
                             <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                                 <div className="relative">
@@ -289,8 +289,8 @@ export default function Home() {
                 </section>
 
                 {/* EVENTS PREVIEW */}
-                <section id="acara" className="py-20 md:py-40 bg-white border-t border-black/5">
-                    <div className="container mx-auto px-4 md:px-8">
+                <section className="py-20 md:py-40 bg-white border-t border-black/5">
+                    <div id="acara" className="container mx-auto px-4 md:px-8">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6">
                             <div className="max-w-2xl">
                                 <h2 className="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight">
