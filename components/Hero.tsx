@@ -11,6 +11,37 @@ export const Hero: React.FC = () => {
     setLoaded(true);
   }, []);
 
+  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const target = document.getElementById('bento-grid');
+    if (!target) return;
+
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition - 80; // Offset for navbar
+    const duration = 1500; // Slower duration
+    let start: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // Easing: easeInOutCubic
+      const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   return (
     <div className="bg-white min-h-[110vh] flex flex-col pt-40 relative overflow-hidden">
       {/* Subtle Grain Texture Overlay */}
@@ -37,7 +68,11 @@ export const Hero: React.FC = () => {
           </Button>
           <span className="text-sm font-bold text-black/30 uppercase tracking-widest text-[10px] hidden sm:block">atau</span>
           <span className="text-sm font-bold text-black/30 uppercase tracking-widest text-[10px] sm:hidden my-2">atau</span>
-          <a href="#" className="group flex items-center gap-2 text-base md:text-lg font-bold text-black border-b-2 border-transparent hover:border-black transition-all pb-0.5">
+          <a
+            href="#bento-grid"
+            onClick={handleScrollClick}
+            className="group flex items-center gap-2 text-base md:text-lg font-bold text-black border-b-2 border-transparent hover:border-black transition-all pb-0.5"
+          >
             Pelajari Cara Kerja
             <ArrowDown className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
           </a>
@@ -45,7 +80,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* 2. Visual Bento Grid Section */}
-      <div className={`w-full relative px-4 md:px-8 pb-32 transition-all duration-1000 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+      <div id="bento-grid" className={`w-full relative px-4 md:px-8 pb-32 transition-all duration-1000 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
         <div className="container mx-auto">
           {/*
             ╔══════════════════════════════════════════════════════════════╗
