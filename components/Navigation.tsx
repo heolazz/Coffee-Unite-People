@@ -70,7 +70,7 @@ export function Navigation() {
 
                     {/* Desktop Actions */}
                     <div className="flex-1 hidden md:flex items-center justify-end gap-6 h-full">
-                        <a href="#" className="text-base font-medium hover:text-black/60 transition-colors h-full flex items-center">Masuk</a>
+
                         <Button variant="primary" size="md" className="bg-black text-white hover:bg-black/80 hover:shadow-lg transition-all rounded-full px-6">Gabung Waitlist</Button>
                     </div>
 
@@ -104,7 +104,7 @@ export function Navigation() {
                 </nav>
                 <div className="pb-12 flex flex-col gap-4">
                     <Button variant="primary" size="lg" className="w-full h-16 text-lg bg-black text-white rounded-full">Gabung Waitlist</Button>
-                    <Button variant="outline" size="lg" className="w-full h-16 text-lg border-2 border-black/10 rounded-full">Masuk Akun</Button>
+
                 </div>
             </div>
         </>
