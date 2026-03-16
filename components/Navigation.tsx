@@ -143,7 +143,7 @@ export function Navigation() {
                                     ${isScrolled ? 'h-10 text-xs' : 'h-12 text-sm'}
                                 `}
                                 onClick={(e) => {
-                                    const target = document.querySelector('section:last-of-type');
+                                    const target = document.getElementById('subscribe');
                                     if (target) target.scrollIntoView({ behavior: 'smooth' });
                                 }}
                             >
@@ -209,7 +209,7 @@ export function Navigation() {
                         size="lg"
                         className="w-full h-16 text-lg font-bold bg-black text-white rounded-full shadow-2xl shadow-black/20"
                         onClick={() => {
-                            const target = document.querySelector('section:last-of-type');
+                            const target = document.getElementById('subscribe');
                             if (target) target.scrollIntoView({ behavior: 'smooth' });
                             setMobileMenuOpen(false);
                         }}

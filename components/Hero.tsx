@@ -63,7 +63,15 @@ export const Hero: React.FC = () => {
 
         {/* Action */}
         <div className="flex flex-col sm:flex-row gap-6 mb-16 md:mb-24 items-center w-full justify-center px-4">
-          <Button variant="primary" size="lg" className="h-14 px-8 text-lg md:h-20 md:px-12 md:text-xl bg-black hover:bg-black/80 text-white rounded-full shadow-2xl shadow-black/20 hover:scale-105 transition-all w-full sm:w-auto">
+          <Button
+            variant="primary"
+            size="lg"
+            className="h-14 px-8 text-lg md:h-20 md:px-12 md:text-xl bg-black hover:bg-black/80 text-white rounded-full shadow-2xl shadow-black/20 hover:scale-105 transition-all w-full sm:w-auto"
+            onClick={() => {
+              const target = document.getElementById('subscribe');
+              if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Gabung Waitlist
           </Button>
           <span className="text-sm font-bold text-black/30 uppercase tracking-widest text-[10px] hidden sm:block">atau</span>
