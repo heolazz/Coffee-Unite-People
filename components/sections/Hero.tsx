@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Button } from './Button';
+import { Button } from '../ui/Button';
 import { ArrowDown } from 'lucide-react';
+import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 
 export const Hero: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
+  const { scrollTo } = useSmoothScroll();
 
   useEffect(() => {
     setLoaded(true);
@@ -13,33 +15,7 @@ export const Hero: React.FC = () => {
 
   const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const target = document.getElementById('bento-grid');
-    if (!target) return;
-
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition - 80; // Offset for navbar
-    const duration = 1500; // Slower duration
-    let start: number | null = null;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      // Easing: easeInOutCubic
-      const ease = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
+    scrollTo('bento-grid', 80, 1500);
   };
 
   return (
@@ -67,10 +43,7 @@ export const Hero: React.FC = () => {
             variant="primary"
             size="lg"
             className="h-14 px-8 text-lg md:h-20 md:px-12 md:text-xl bg-black hover:bg-black/80 text-white rounded-full shadow-2xl shadow-black/20 hover:scale-105 transition-all w-full sm:w-auto"
-            onClick={() => {
-              const target = document.getElementById('subscribe');
-              if (target) target.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => scrollTo('subscribe')}
           >
             Gabung Waitlist
           </Button>
@@ -90,42 +63,13 @@ export const Hero: React.FC = () => {
       {/* 2. Visual Bento Grid Section */}
       <div id="bento-grid" className={`w-full relative px-4 md:px-8 pb-32 transition-all duration-1000 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
         <div className="container mx-auto">
-          {/*
-            ╔══════════════════════════════════════════════════════════════╗
-            ║  🎛️  BENTO GRID SIZE CONTROL                               ║
-            ║                                                             ║
-            ║  DESKTOP (lg, 4 kolom, 3 baris):                            ║
-            ║  ROW_TOP → Cafes Active & Coffee                            ║
-            ║  ROW_MID → bawah Meeting + atas Event/Work                  ║
-            ║  ROW_BOT → bawah Event/Work & Yellow Block                  ║
-            ║                                                             ║
-            ║  MOBILE (2 kolom, 6 baris):                                 ║
-            ║  M_ROW1 → Cafes Active & Coffee                             ║
-            ║  M_ROW2 → Meeting atas                                      ║
-            ║  M_ROW3 → Meeting bawah                                     ║
-            ║  M_ROW4 → Event/Work atas                                   ║
-            ║  M_ROW5 → Event/Work bawah                                  ║
-            ║  M_ROW6 → Yellow Block (Scroll Down)                        ║
-            ╚══════════════════════════════════════════════════════════════╝
-          */}
           <style>{`
             .bento-grid {
-              /* 📱 MOBILE (default, 2 kolom, 6 baris) - UBAH ANGKA DI SINI: */
-              grid-template-rows:
-                180px   /* M_ROW1: Cafes Active & Coffee */
-                150px   /* M_ROW2: Meeting atas */
-                150px   /* M_ROW3: Meeting bawah */
-                120px   /* M_ROW4: Event/Work atas */
-                120px   /* M_ROW5: Event/Work bawah */
-                160px;  /* M_ROW6: Yellow Block (Scroll Down) */
+              grid-template-rows: 180px 150px 150px 120px 120px 160px;
             }
             @media (min-width: 1024px) {
               .bento-grid {
-                /* 🖥️ DESKTOP (lg, 4 kolom, 3 baris) - UBAH ANGKA DI SINI: */
-                grid-template-rows:
-                  240px   /* ROW_TOP: Cafes Active & Coffee */
-                  140px   /* ROW_MID: bawah Meeting + atas Event/Work */
-                  200px;  /* ROW_BOT: bawah Event/Work & Yellow Block */
+                grid-template-rows: 240px 140px 200px;
               }
             }
           `}</style>
@@ -135,13 +79,11 @@ export const Hero: React.FC = () => {
             <div className="bg-accent/40 rounded-[2.5rem] md:rounded-[3.5rem] relative overflow-hidden flex flex-col items-start justify-between p-6 md:p-10 group hover:bg-accent/50 transition-colors duration-500">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-              {/* Live Indicator */}
               <div className="relative z-10 flex items-center gap-2 px-3 py-1 bg-white/50 backdrop-blur-md rounded-full border border-black/5 translate-y-0 group-hover:-translate-y-1 transition-transform">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 <span className="text-[10px] font-bold uppercase tracking-tight text-black/60">Live Now</span>
               </div>
 
-              {/* Big Number & Brand Monogram */}
               <div className="relative z-10 mt-auto">
                 <div className="text-4xl md:text-6xl font-black tracking-tighter text-black mb-1">
                   24<span className="text-black/20">+</span>
@@ -151,7 +93,6 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
 
-              {/* Subtle Logo Ring in background */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-[20px] border-black/[0.03] rounded-full select-none pointer-events-none"></div>
             </div>
 
@@ -226,44 +167,6 @@ export const Hero: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* 
-        PREVIOUS BANNER (COMMENTED OUT FOR RESTORATION)
-        If you want to use the luxury single-image composition again, uncomment the following block:
-        
-        <div className={`w-full relative mt-0 px-4 md:px-8 pb-32 transition-all duration-1000 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-          <div className="container mx-auto px-4 md:px-8 relative">
-            <div className="w-full h-[60vh] md:h-[80vh] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden relative shadow-2xl shadow-black/5">
-              <div className="absolute inset-0 bg-black/10 z-10 gradient-mask-t-b"></div>
-              <img
-                src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2671&auto=format&fit=crop"
-                alt="Coffee Shop Aesthetic"
-                className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-[3s] hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 bg-gradient-to-t from-black/80 md:from-black/60 to-transparent z-20 flex flex-col md:flex-row items-end justify-between">
-                <div className="text-white max-w-lg mb-6 md:mb-0 w-full md:w-auto">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">Suasana Pagi di Jakarta Selatan</h3>
-                  <div className="flex items-center gap-3 text-white/80">
-                    <div className="flex -space-x-3">
-                      {[1, 2, 3, 4].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white/10 bg-white/20 backdrop-blur-md"></div>
-                      ))}
-                    </div>
-                    <span className="text-sm font-medium">+42 Orang di sini</span>
-                  </div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 md:p-6 rounded-2xl md:rounded-3xl max-w-full md:max-w-xs text-white w-full md:w-auto">
-                  <p className="text-base md:text-lg font-medium leading-relaxed">"Tempatnya asik buat kerja remote, wifi kenceng & kopinya enak!"</p>
-                  <div className="flex items-center gap-3 mt-4">
-                    <div className="w-8 h-8 rounded-full bg-accent"></div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-white/60">Sarah, Designer</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      */}
 
     </div>
   );

@@ -2,8 +2,8 @@
 
 import React, { useState, useRef } from 'react';
 import { Sparkles, Loader2 } from 'lucide-react';
-import { generateEventIdea } from '../services/geminiService';
-import { GeneratedIdea } from '../types';
+import { generateEventIdea } from '../../services/geminiService';
+import { GeneratedIdea } from '../../types';
 
 export const IdeaGenerator: React.FC = () => {
   const [topic, setTopic] = useState('');

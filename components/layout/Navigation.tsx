@@ -1,105 +1,44 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
-import { Logo } from './Logo';
+import React, { useState } from 'react';
+import { Button } from '../ui/Button';
+import { Logo } from '../ui/Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { useScrollData } from '../../hooks/useScrollData';
+import { useSmoothScroll } from '../../hooks/useSmoothScroll';
+
+const navLinks = [
+    { name: 'Tentang', id: 'tentang' },
+    { name: 'Cara Kerja', id: 'cara-kerja' },
+    { name: 'Fitur', id: 'fitur' },
+    { name: 'Acara', id: 'acara' },
+    { name: 'FAQ', id: 'faq' },
+];
 
 export function Navigation() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { scrollTo } = useSmoothScroll();
+    const { isScrolled, isVisible, activeSection, scrollProgress } = useScrollData({ navLinks });
 
-    const [activeSection, setActiveSection] = useState('');
-    const [scrollProgress, setScrollProgress] = useState(0);
-
-    useEffect(() => {
-        const handleScrollData = () => {
-            if (typeof window === 'undefined') return;
-
-            const currentScrollY = window.scrollY;
-
-            // 1. Show/Hide & Background logic
-            if (mobileMenuOpen) {
-                setIsVisible(true);
-            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-            setIsScrolled(currentScrollY > 50);
-            setLastScrollY(currentScrollY);
-
-            // 2. Scroll Progress logic
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            setScrollProgress(scrolled);
-
-            // 3. Precise Active Section logic
-            const sections = [...navLinks].reverse(); // Check from bottom to top
-            let currentActive = '';
-
-            for (const link of sections) {
-                const element = document.getElementById(link.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Trigger active state when section is 150px from top
-                    if (rect.top <= 150) {
-                        currentActive = link.id;
-                        break;
-                    }
-                }
-            }
-            setActiveSection(currentActive);
-        };
-
-        window.addEventListener('scroll', handleScrollData);
-        return () => window.removeEventListener('scroll', handleScrollData);
-    }, [lastScrollY, mobileMenuOpen]);
-
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
-        const target = document.getElementById(id);
-        if (!target) return;
-
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-        const startPosition = window.scrollY;
         const offset = window.innerWidth < 768 ? 70 : 80;
-        const distance = targetPosition - startPosition - offset;
-        const duration = 1200;
-        let start: number | null = null;
-
-        const animation = (currentTime: number) => {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-
-            const ease = progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-            window.scrollTo(0, startPosition + distance * ease);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
-        };
-
+        scrollTo(id, offset);
         setMobileMenuOpen(false);
-        requestAnimationFrame(animation);
     };
-
-    const navLinks = [
-        { name: 'Tentang', id: 'tentang' },
-        { name: 'Cara Kerja', id: 'cara-kerja' },
-        { name: 'Fitur', id: 'fitur' },
-        { name: 'Acara', id: 'acara' },
-        { name: 'FAQ', id: 'faq' },
-    ];
 
     return (
         <>
+            {/* Global Scroll Progress - Fixed at the very top of the viewport */}
+            <div className="fixed top-0 left-0 w-full h-1 bg-black/5 z-[100] pointer-events-none">
+                <div
+                    className="h-full bg-accent transition-all duration-150 ease-out"
+                    style={{ width: `${scrollProgress}%` }}
+                />
+            </div>
+
             {/* Header - Adaptive Pill Transformation */}
-            <div className={`fixed w-full top-0 z-[80] flex justify-center py-4 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div className={`fixed w-full top-0 z-[80] flex justify-center py-4 transition-all duration-500 translate-y-0`}>
                 <header
                     className={`
                         transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
@@ -121,11 +60,10 @@ export function Navigation() {
                                 <a
                                     key={link.id}
                                     href={`#${link.id}`}
-                                    onClick={(e) => handleScroll(e, link.id)}
+                                    onClick={(e) => handleNavClick(e, link.id)}
                                     className={`relative hover:text-black transition-colors ${activeSection === link.id ? 'text-black' : ''}`}
                                 >
                                     {link.name}
-                                    {/* Active Dot indicator */}
                                     {activeSection === link.id && (
                                         <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full animate-pulse" />
                                     )}
@@ -142,16 +80,12 @@ export function Navigation() {
                                     bg-black text-white hover:scale-105 transition-all rounded-full px-6 font-bold
                                     ${isScrolled ? 'h-10 text-xs' : 'h-12 text-sm'}
                                 `}
-                                onClick={(e) => {
-                                    const target = document.getElementById('subscribe');
-                                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                                }}
+                                onClick={() => scrollTo('subscribe')}
                             >
                                 Gabung Waitlist
                             </Button>
                         </div>
 
-                        {/* Mobile Menu Toggle - Custom Morphing-style animation */}
                         <button
                             className="md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 rounded-full bg-black/5 active:scale-95 transition-all group z-[70]"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -162,15 +96,6 @@ export function Navigation() {
                         </button>
                     </div>
 
-                    {/* Scroll Progress Bar (Inside Pill) */}
-                    {isScrolled && (
-                        <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-black/5 overflow-hidden rounded-full">
-                            <div
-                                className="h-full bg-accent transition-all duration-300 ease-out"
-                                style={{ width: `${scrollProgress}%` }}
-                            />
-                        </div>
-                    )}
                 </header>
             </div>
 
@@ -183,12 +108,11 @@ export function Navigation() {
                             key={link.id}
                             href={`#${link.id}`}
                             className="border-b border-black/5 pb-4 flex items-center justify-between group"
-                            onClick={(e) => handleScroll(e, link.id)}
+                            onClick={(e) => handleNavClick(e, link.id)}
                             style={{ transitionDelay: `${i * 50}ms` }}
                         >
                             <span className="relative inline-block py-1">
                                 {link.name}
-                                {/* Active Underline */}
                                 {activeSection === link.id && (
                                     <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-accent rounded-full" />
                                 )}
@@ -198,7 +122,6 @@ export function Navigation() {
                     ))}
                 </nav>
 
-                {/* Simplified Footer - Focus on CTA */}
                 <div className="mt-auto mb-8">
                     <p className="text-[10px] font-bold text-black/20 text-center tracking-widest uppercase">© 2026 CUP Project — Coffee Unite People</p>
                 </div>
@@ -209,8 +132,7 @@ export function Navigation() {
                         size="lg"
                         className="w-full h-16 text-lg font-bold bg-black text-white rounded-full shadow-2xl shadow-black/20"
                         onClick={() => {
-                            const target = document.getElementById('subscribe');
-                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                            scrollTo('subscribe');
                             setMobileMenuOpen(false);
                         }}
                     >

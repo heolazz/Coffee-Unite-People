@@ -1,7 +1,27 @@
+"use client";
+
 import React from 'react';
-import { Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Twitter, Instagram, Linkedin, ArrowUpRight, Send, Coffee } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const Footer: React.FC = () => {
+  const [isSubscribed, setIsSubscribed] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    setIsSubmitting(false);
+    setIsSubscribed(true);
+
+    // Reset after some time if you want
+    setTimeout(() => setIsSubscribed(false), 5000);
+  };
+
   return (
     <footer id="subscribe" className="bg-white text-black pt-20 md:pt-40 pb-12 border-t border-black/5 relative overflow-hidden">
       {/* Subtle Grain Texture Overlay (Consistent with Hero) */}
@@ -15,13 +35,57 @@ export const Footer: React.FC = () => {
             <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9]">
               Jangan ngopi <br /> sendirian terus.
             </h2>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input type="email" placeholder="Email kamu" className="bg-transparent border-b-2 border-black/10 px-0 py-4 text-xl placeholder:text-black/20 focus:border-black focus:outline-none w-full sm:w-80 transition-colors" />
-              <button className="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-black/80 transition-colors flex items-center gap-2 group">
-                Subscribe
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 items-end">
+              <div className="flex-1 w-full">
+                <input
+                  type="email"
+                  required
+                  placeholder="Email kamu"
+                  className="bg-transparent border-b-2 border-black/10 px-0 py-4 text-xl placeholder:text-black/20 focus:border-black focus:outline-none w-full sm:w-80 transition-colors"
+                />
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting || isSubscribed}
+                className="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-black/80 transition-all flex items-center gap-2 group min-w-[160px] justify-center overflow-hidden relative"
+              >
+                <AnimatePresence mode="wait">
+                  {!isSubscribed ? (
+                    <motion.div
+                      key="label"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="flex items-center gap-2"
+                    >
+                      <span>{isSubmitting ? 'Mengirim...' : 'Subscribe'}</span>
+                      <motion.div
+                        animate={isSubmitting ? {
+                          x: [0, -5, 50],
+                          y: [0, 5, -50],
+                          opacity: [1, 1, 0],
+                          scale: [1, 1.2, 0.8]
+                        } : {}}
+                        transition={{ duration: 0.6, ease: "easeIn" }}
+                      >
+                        {isSubmitting ? <Send className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                      </motion.div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="flex items-center gap-3 text-white"
+                    >
+                      <span>Cek email Kamu!</span>
+                      <Coffee className="w-5 h-5 text-white" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </form>
           </div>
 
           <div className="flex gap-4">
