@@ -29,8 +29,16 @@ export function Navigation() {
 
     return (
         <>
+            {/* Global Scroll Progress - Fixed at the very top of the viewport */}
+            <div className="fixed top-0 left-0 w-full h-1 bg-black/5 z-[100] pointer-events-none">
+                <div
+                    className="h-full bg-accent transition-all duration-150 ease-out"
+                    style={{ width: `${scrollProgress}%` }}
+                />
+            </div>
+
             {/* Header - Adaptive Pill Transformation */}
-            <div className={`fixed w-full top-0 z-[80] flex justify-center py-4 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div className={`fixed w-full top-0 z-[80] flex justify-center py-4 transition-all duration-500 translate-y-0`}>
                 <header
                     className={`
                         transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
@@ -88,14 +96,6 @@ export function Navigation() {
                         </button>
                     </div>
 
-                    {isScrolled && (
-                        <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-black/5 overflow-hidden rounded-full">
-                            <div
-                                className="h-full bg-accent transition-all duration-300 ease-out"
-                                style={{ width: `${scrollProgress}%` }}
-                            />
-                        </div>
-                    )}
                 </header>
             </div>
 
